@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-// ROUTES
-app.get('/api', (req, res) => {
-	res.send({greeting: 'Hello World!'});
-});
+// LOCAL IMPORT
+const routes = require('./routes/routes');
+
+routes(app);
 
 module.exports = app;
