@@ -12,6 +12,10 @@ describe('The express app', () => {
 		request(app)
 			.get('/api')
 			.end((err, res) => {
+				if(err) {
+					return done(err);
+				}
+			
 				assert(res.body.greeting === 'Hello World!');
 				done();
 			});
