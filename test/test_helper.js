@@ -15,6 +15,10 @@ beforeEach(done => {
 	const {drivers} = mongoose.connection.collections;
 	
 	drivers.drop()
+		// before any test is run, a index is in place over geometry.coordinates on the driver collection. Every time the collection is droppped, immediately recreate the index
+		.then(() => drivers.ensureIndex({
+			'geometry.coordinates': '2dsphere'
+		}))
 		.then(() => done())
 		.catch(() => done());
 });
